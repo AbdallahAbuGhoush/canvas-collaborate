@@ -30,9 +30,8 @@ import {
 } from "@/lib/mock-api";
 
 export const Route = createFileRoute("/sessions/$sessionId")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    p: typeof search.p === "string" ? search.p : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { p?: string } =>
+    typeof search["p"] === "string" ? { p: search["p"] } : {},
   head: () => ({
     meta: [
       { title: "Session canvas — Interview Board" },
